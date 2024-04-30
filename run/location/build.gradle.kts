@@ -33,6 +33,9 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.domain)
+    implementation(projects.run.data)
+
     implementation(libs.androidx.core.ktx)
 
     implementation(platform(libs.androidx.compose.bom))

@@ -14,6 +14,9 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "MileMarker"
+// experimental but stable feature for accessing modules in a Type Safe manner.
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 include(":app")
 include(":auth:data")
 include(":auth:domain")
