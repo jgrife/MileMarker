@@ -34,5 +34,9 @@ gradlePlugin {
             id = "milemarker.android.feature.ui"
             implementationClass = "AndroidFeatureUiConventionPlugin"
         }
+        register("androidRoom") {
+            id = "milemarker.android.room"
+            implementationClass = "AndroidRoomConventionPlugin"
+        }
     }
 }

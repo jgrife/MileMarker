@@ -79,6 +79,9 @@ material = { group = "com.google.android.material", name = "material", version.r
 google-maps-android-compose = { module = "com.google.maps.android:maps-compose", version.ref = "maps" }
 google-android-gms-play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "gmsLocation" }
 org-mongodb-bson = { module = "org.mongodb:bson", version.ref = "bson" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 
 # Gradle
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -104,6 +107,7 @@ milemarker-android-application-compose = { id = "milemarker.android.application.
 milemarker-android-library = { id = "milemarker.android.library", version = "unspecified" }
 milemarker-android-library-compose = { id = "milemarker.android.library.compose", version = "unspecified" }
 milemarker-android-feature-ui = { id = "milemarker.android.feature.ui", version = "unspecified" }
+milemarker-android-room = { id = "milemarker.android.room", version = "unspecified" }
 
 [bundles]
 compose = [
