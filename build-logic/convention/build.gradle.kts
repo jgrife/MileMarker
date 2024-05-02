@@ -22,5 +22,9 @@ gradlePlugin {
             id = "milemarker.android.application.compose"
             implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
+        register("androidLibrary") {
+            id = "milemarker.android.library"
+            implementationClass = "AndroidLibraryConventionPlugin"
+        }
     }
 }

@@ -97,3 +97,4 @@ mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.
 
 milemarker-android-application = { id = "milemarker.android.application", version = "unspecified" }
 milemarker-android-application-compose = { id = "milemarker.android.application.compose", version = "unspecified" }
+milemarker-android-library= { id = "milemarker.android.library", version = "unspecified" }
