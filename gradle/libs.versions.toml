@@ -52,8 +52,8 @@ androidx-navigation-compose = { module = "androidx.navigation:navigation-compose
 androidx-security-crypto-ktx = { module = "androidx.security:security-crypto-ktx", version.ref = "securityCryptoKtx" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 core = { module = "com.google.android.play:core", version.ref = "playCore" }
-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization"}
-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines"}
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-work = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work" }
@@ -73,7 +73,7 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 google-maps-android-compose = { module = "com.google.maps.android:maps-compose", version.ref = "maps" }
-google-android-gms-play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "gmsLocation"}
+google-android-gms-play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "gmsLocation" }
 org-mongodb-bson = { module = "org.mongodb:bson", version.ref = "bson" }
 
 # Gradle
@@ -93,8 +93,9 @@ jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jet
 jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 room = { id = "androidx.room", version.ref = "room" }
-mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPlugin"}
+mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPlugin" }
 
 milemarker-android-application = { id = "milemarker.android.application", version = "unspecified" }
 milemarker-android-application-compose = { id = "milemarker.android.application.compose", version = "unspecified" }
-milemarker-android-library= { id = "milemarker.android.library", version = "unspecified" }
+milemarker-android-library = { id = "milemarker.android.library", version = "unspecified" }
+milemarker-android-library-compose = { id = "milemarker.android.library.compose", version = "unspecified" }
