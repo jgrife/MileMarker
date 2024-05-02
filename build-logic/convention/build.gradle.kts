@@ -18,5 +18,9 @@ gradlePlugin {
             id = "milemarker.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
+        register("androidApplicationCompose") {
+            id = "milemarker.android.application.compose"
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
     }
 }

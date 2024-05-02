@@ -39,6 +39,7 @@ projectMinSdkVersion = "25"
 projectTargetSdkVersion = "34"
 projectCompileSdkVersion = "34"
 javaVersion = "11"
+composeCompilerVersion = "1.5.12"
 
 
 [libraries]
@@ -95,3 +96,4 @@ room = { id = "androidx.room", version.ref = "room" }
 mapsplatform-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPlugin"}
 
 milemarker-android-application = { id = "milemarker.android.application", version = "unspecified" }
+milemarker-android-application-compose = { id = "milemarker.android.application.compose", version = "unspecified" }
