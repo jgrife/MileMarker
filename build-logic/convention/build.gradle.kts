@@ -42,5 +42,8 @@ gradlePlugin {
             id = "milemarker.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"
         }
-    }
+        register("jvmKtor") {
+            id = "milemarker.jvm.ktor"
+            implementationClass = "JvmKtorConventionPlugin"
+        }    }
 }

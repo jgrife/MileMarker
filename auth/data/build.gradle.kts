@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.milemarker.android.library)
+    alias(libs.plugins.milemarker.jvm.ktor)
 }
 
 android {
@@ -8,6 +9,6 @@ android {
 
 dependencies {
     implementation(projects.core.domain)
-    implementation(projects.core.database)
+    implementation(projects.core.data)
     implementation(projects.auth.domain)
 }

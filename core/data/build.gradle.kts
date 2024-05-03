@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.milemarker.android.library)
+    alias(libs.plugins.milemarker.jvm.ktor)
 }
 
 android {

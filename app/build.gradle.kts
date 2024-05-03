@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.milemarker.android.application.compose)
+    alias(libs.plugins.milemarker.jvm.ktor)
     alias(libs.plugins.mapsplatform.secrets.plugin)
 }
 
