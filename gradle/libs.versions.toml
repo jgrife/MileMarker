@@ -108,6 +108,7 @@ milemarker-android-library = { id = "milemarker.android.library", version = "uns
 milemarker-android-library-compose = { id = "milemarker.android.library.compose", version = "unspecified" }
 milemarker-android-feature-ui = { id = "milemarker.android.feature.ui", version = "unspecified" }
 milemarker-android-room = { id = "milemarker.android.room", version = "unspecified" }
+milemarker-jvm-library = { id = "milemarker.jvm.library", version = "unspecified" }
 
 [bundles]
 compose = [

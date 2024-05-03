@@ -38,5 +38,9 @@ gradlePlugin {
             id = "milemarker.android.room"
             implementationClass = "AndroidRoomConventionPlugin"
         }
+        register("jvmLibrary") {
+            id = "milemarker.jvm.library"
+            implementationClass = "JvmLibraryConventionPlugin"
+        }
     }
 }
