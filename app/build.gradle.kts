@@ -38,6 +38,9 @@ dependencies {
     implementation(projects.run.location)
     implementation(projects.run.network)
 
+    // DI - Koin
+    implementation(libs.bundles.koin)
+
     // Coil
     implementation(libs.coil.compose)
 
