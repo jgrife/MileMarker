@@ -19,10 +19,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.core.presentation.designsystem.MileMarkerBlack
 import com.example.core.presentation.designsystem.MileMarkerGray
+import com.example.core.presentation.designsystem.MileMarkerTheme
 
+/**
+ * Composable Action Button with an [onClick] event.
+ */
 @Composable
 fun MileMarkerActionButton(
     text: String,
@@ -109,5 +114,18 @@ fun MileMarkerOutlinedActionButton(
                 fontWeight = FontWeight.Medium
             )
         }
+    }
+}
+
+@Preview
+@Composable
+private fun MileMarkerActionButtonPreview() {
+    MileMarkerTheme {
+        MileMarkerActionButton(
+            text = "Login",
+            isLoading = false,
+            enabled = true,
+            onClick = { }
+        )
     }
 }

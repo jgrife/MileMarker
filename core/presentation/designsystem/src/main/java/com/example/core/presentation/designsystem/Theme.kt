@@ -18,7 +18,8 @@ val DarkColorScheme = darkColorScheme(
     onPrimary = MileMarkerBlack,
     onBackground = MileMarkerWhite,
     onSurface = MileMarkerWhite,
-    onSurfaceVariant = MileMarkerGray
+    onSurfaceVariant = MileMarkerGray,
+    error = MileMarkerDarkRed
 )
 
 @Composable
