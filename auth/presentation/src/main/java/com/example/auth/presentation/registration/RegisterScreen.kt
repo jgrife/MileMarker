@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -154,7 +155,8 @@ private fun RegisterScreen(
                 title = stringResource(id = R.string.email),
                 modifier = Modifier.fillMaxWidth(),
                 additionalInfo = stringResource(id = R.string.must_be_a_valid_email),
-                keyboardType = KeyboardType.Email
+                keyboardType = KeyboardType.Email,
+                imeAction = ImeAction.Next
             )
             Spacer(modifier = Modifier.height(16.dp))
             MileMarkerPasswordTextField(
@@ -165,7 +167,12 @@ private fun RegisterScreen(
                 },
                 hint = stringResource(id = R.string.password),
                 title = stringResource(id = R.string.password),
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                imeAction = ImeAction.Done,
+                imeActionHandler = {
+                    onAction(RegisterAction.OnRegisterClick)
+                    true
+                }
             )
             Spacer(modifier = Modifier.height(16.dp))
 
