@@ -35,8 +35,8 @@ dependencies {
     implementation(projects.run.data)
     implementation(projects.run.domain)
     implementation(projects.run.location)
-    implementation(projects.run.location)
     implementation(projects.run.network)
+    implementation(projects.run.presentation)
 
     // DI - Koin
     implementation(libs.bundles.koin)
