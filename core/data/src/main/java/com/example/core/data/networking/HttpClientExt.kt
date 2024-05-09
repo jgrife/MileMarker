@@ -13,8 +13,9 @@ import io.ktor.client.request.setBody
 import io.ktor.client.request.url
 import io.ktor.client.statement.HttpResponse
 import io.ktor.util.network.UnresolvedAddressException
+import kotlinx.coroutines.ensureActive
 import kotlinx.serialization.SerializationException
-import kotlin.coroutines.cancellation.CancellationException
+import kotlin.coroutines.coroutineContext
 
 suspend inline fun <reified Response : Any> HttpClient.get(
     route: String,
@@ -66,7 +67,7 @@ suspend inline fun <reified T> safeCall(execute: () -> HttpResponse): Result<T, 
         e.printStackTrace()
         return Result.Error(DataError.Network.SERIALIZATION)
     } catch (e: Exception) {
-        if (e is CancellationException) throw e
+        coroutineContext.ensureActive()
         e.printStackTrace()
         return Result.Error(DataError.Network.UNKNOWN)
     }
