@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -27,8 +28,8 @@ fun MileMarkerDialog(
     description: String,
     modifier: Modifier = Modifier,
     onDismiss: () -> Unit,
-    primaryButton: @Composable () -> Unit,
-    secondaryButton: @Composable () -> Unit = {}
+    primaryButton: @Composable RowScope.() -> Unit,
+    secondaryButton: @Composable RowScope.() -> Unit = {}
 ) {
     Dialog(onDismissRequest = onDismiss) {
         Column(
@@ -76,9 +77,16 @@ private fun MileMarkerDialogPreview() {
             primaryButton = {
                 MileMarkerOutlinedActionButton(
                     text = "Okay",
-                    isLoading = false
-                ) {
-                }
+                    isLoading = false,
+                    modifier = Modifier.weight(1f)
+                ) { }
+            },
+            secondaryButton = {
+                MileMarkerOutlinedActionButton(
+                    text = "Pause",
+                    isLoading = false,
+                    modifier = Modifier.weight(1f)
+                ) { }
             })
     }
 }
