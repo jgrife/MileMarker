@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.milemarker.android.feature.ui)
+    alias(libs.plugins.mapsplatform.secrets.plugin)
 }
 
 android {
@@ -11,4 +12,5 @@ dependencies {
     implementation(projects.run.domain)
 
     implementation(libs.google.maps.android.compose)
+    implementation(libs.coil.compose)
 }
