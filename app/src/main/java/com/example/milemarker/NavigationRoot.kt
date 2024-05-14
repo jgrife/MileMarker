@@ -1,16 +1,18 @@
 package com.example.milemarker
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navDeepLink
 import androidx.navigation.navigation
 import com.example.auth.presentation.intro.IntroScreenRoot
 import com.example.auth.presentation.login.LoginScreenRoot
 import com.example.auth.presentation.registration.RegisterScreenRoot
 import com.example.run.presentation.active_run.ActiveRunScreenRoot
+import com.example.run.presentation.active_run.service.ActiveRunService
 import com.example.run.presentation.run_overview.RunOverviewScreenRoot
 
 @Composable
@@ -93,8 +95,24 @@ private fun NavGraphBuilder.runGraph(navController: NavHostController) {
                 }
             )
         }
-        composable("active_run") {
-            ActiveRunScreenRoot()
+        composable(
+            route = "active_run",
+            deepLinks = listOf(
+                navDeepLink {
+                    uriPattern = ActiveRunService.DEEPLINK_URI
+                }
+            )) {
+
+            val context = LocalContext.current
+            ActiveRunScreenRoot { startService ->
+                context.startService(
+                    if (startService) {
+                        ActiveRunService.createStartIntent(context, MainActivity::class.java)
+                    } else {
+                        ActiveRunService.createStopIntent(context)
+                    }
+                )
+            }
         }
     }
 }
