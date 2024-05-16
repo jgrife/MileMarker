@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.milemarker.android.feature.ui)
+    alias(libs.plugins.milemarker.coroutine.testing)
 }
 
 android {

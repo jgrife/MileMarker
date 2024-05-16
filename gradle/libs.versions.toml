@@ -31,6 +31,9 @@ bson = "4.11.1"
 work = "2.9.0"
 kotlinx-serialization = "1.6.3"
 secretsPlugin = "2.0.1"
+turbine = "1.1.0"
+truth = "1.4.2"
+coroutines-test = "1.8.0"
 
 # Project versions
 projectApplicationId = "com.example.milemarker"
@@ -89,6 +92,9 @@ org-mongodb-bson = { module = "org.mongodb:bson", version.ref = "bson" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
+kotlinx-coroutines-test = { group= "org.jetbrains.kotlinx", name= "kotlinx-coroutines-test", version.ref="coroutines-test"}
 
 # Gradle
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -117,6 +123,7 @@ milemarker-android-feature-ui = { id = "milemarker.android.feature.ui", version 
 milemarker-android-room = { id = "milemarker.android.room", version = "unspecified" }
 milemarker-jvm-library = { id = "milemarker.jvm.library", version = "unspecified" }
 milemarker-jvm-ktor = { id = "milemarker.jvm.ktor", version = "unspecified" }
+milemarker-coroutine-testing = { id = "milemarker.coroutine.testing", version = "unspecified" }
 
 [bundles]
 compose = [
@@ -142,3 +149,4 @@ ktor = [
     "ktor-client-logging",
     "ktor-serialization-kotlinx-json"
 ]
+coroutine-testing = ["turbine", "truth", "kotlinx-coroutines-test"]

@@ -46,5 +46,9 @@ gradlePlugin {
             id = "milemarker.jvm.ktor"
             implementationClass = "JvmKtorConventionPlugin"
         }
+        register("coroutineTesting") {
+            id = "milemarker.coroutine.testing"
+            implementationClass = "CoroutineTestingConventionPlugin"
+        }
     }
 }

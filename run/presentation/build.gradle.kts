@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.milemarker.android.feature.ui)
     alias(libs.plugins.mapsplatform.secrets.plugin)
+    alias(libs.plugins.milemarker.coroutine.testing)
 }
 
 android {
