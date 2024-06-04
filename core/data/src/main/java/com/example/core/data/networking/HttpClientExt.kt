@@ -15,6 +15,7 @@ import io.ktor.client.statement.HttpResponse
 import io.ktor.util.network.UnresolvedAddressException
 import kotlinx.coroutines.ensureActive
 import kotlinx.serialization.SerializationException
+import timber.log.Timber
 import kotlin.coroutines.coroutineContext
 
 suspend inline fun <reified Response : Any> HttpClient.get(
@@ -61,14 +62,14 @@ suspend inline fun <reified T> safeCall(execute: () -> HttpResponse): Result<T, 
     val response = try {
         execute()
     } catch (e: UnresolvedAddressException) {
-        e.printStackTrace()
+        Timber.e(e)
         return Result.Error(DataError.Network.NO_INTERNET)
     } catch (e: SerializationException) {
-        e.printStackTrace()
+        Timber.e(e)
         return Result.Error(DataError.Network.SERIALIZATION)
     } catch (e: Exception) {
         coroutineContext.ensureActive()
-        e.printStackTrace()
+        Timber.e(e)
         return Result.Error(DataError.Network.UNKNOWN)
     }
 

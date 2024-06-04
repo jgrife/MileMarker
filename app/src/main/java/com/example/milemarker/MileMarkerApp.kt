@@ -6,6 +6,7 @@ import com.example.auth.presentation.di.authViewModelModule
 import com.example.core.data.di.coreDataModule
 import com.example.core.database.di.databaseModule
 import com.example.milemarker.di.appModule
+import com.example.run.data.di.runDataModule
 import com.example.run.location.di.locationModule
 import com.example.run.network.di.networkModule
 import com.example.run.presentation.di.runPresentationModule
@@ -38,7 +39,8 @@ class MileMarkerApp: Application() {
                 locationModule,
                 coreDataModule,
                 databaseModule,
-                networkModule
+                networkModule,
+                runDataModule
             )
         }
     }
