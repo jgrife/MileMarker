@@ -3,8 +3,8 @@ package com.example.core.database.dao
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
-import com.plcoding.core.database.entity.DeletedRunSyncEntity
-import com.plcoding.core.database.entity.RunPendingSyncEntity
+import com.example.core.database.entity.DeletedRunSyncEntity
+import com.example.core.database.entity.RunPendingSyncEntity
 
 @Dao
 interface RunPendingSyncDao {

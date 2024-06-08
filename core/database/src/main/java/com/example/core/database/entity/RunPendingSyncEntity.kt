@@ -1,9 +1,8 @@
-package com.plcoding.core.database.entity
+package com.example.core.database.entity
 
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.core.database.entity.RunEntity
 
 @Entity
 data class RunPendingSyncEntity(

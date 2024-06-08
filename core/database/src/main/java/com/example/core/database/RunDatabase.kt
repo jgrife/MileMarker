@@ -5,8 +5,8 @@ import androidx.room.RoomDatabase
 import com.example.core.database.dao.RunDao
 import com.example.core.database.dao.RunPendingSyncDao
 import com.example.core.database.entity.RunEntity
-import com.plcoding.core.database.entity.DeletedRunSyncEntity
-import com.plcoding.core.database.entity.RunPendingSyncEntity
+import com.example.core.database.entity.DeletedRunSyncEntity
+import com.example.core.database.entity.RunPendingSyncEntity
 
 @Database(
     entities = [

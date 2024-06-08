@@ -1,4 +1,4 @@
-package com.plcoding.core.database.entity
+package com.example.core.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
