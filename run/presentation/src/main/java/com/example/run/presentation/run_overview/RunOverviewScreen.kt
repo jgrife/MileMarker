@@ -29,6 +29,7 @@ import com.example.core.presentation.designsystem.components.MileMarkerFloatingA
 import com.example.core.presentation.designsystem.components.MileMarkerScaffold
 import com.example.core.presentation.designsystem.components.MileMarkerTopAppBar
 import com.example.core.presentation.designsystem.components.util.DropDownItem
+import com.example.core.presentation.ui.DistanceUnit
 import com.example.run.presentation.run_overview.components.RunListItem
 import com.milemarker.run.presentation.R
 import org.koin.androidx.compose.koinViewModel
@@ -70,6 +71,16 @@ private fun RunOverviewScreen(
                 scrollBehavior = scrollBehavior,
                 menuItems = listOf(
                     DropDownItem(
+                        icon = RunIcon,
+                        title = stringResource(
+                            id =
+                            when (state.currentDistanceUnit) {
+                                DistanceUnit.MILES -> R.string.display_in_meters
+                                DistanceUnit.KILOMETERS -> R.string.display_in_miles
+                            }
+                        )
+                    ),
+                    DropDownItem(
                         icon = AnalyticsIcon,
                         title = stringResource(id = R.string.analytics)
                     ),
@@ -80,8 +91,9 @@ private fun RunOverviewScreen(
                 ),
                 onMenuItemClick = { index ->
                     when (index) {
-                        0 -> onAction(RunOverviewAction.OnAnalyticsClick)
-                        1 -> onAction(RunOverviewAction.OnLogoutClick)
+                        0 -> onAction(RunOverviewAction.OnDistanceUnitToggle)
+                        1 -> onAction(RunOverviewAction.OnAnalyticsClick)
+                        2 -> onAction(RunOverviewAction.OnLogoutClick)
                     }
                 },
                 startContent = {
@@ -112,7 +124,7 @@ private fun RunOverviewScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             items(
-                items = state.runs,
+                items = state.runsUi,
                 key = { it.id }
             ) {
                 RunListItem(

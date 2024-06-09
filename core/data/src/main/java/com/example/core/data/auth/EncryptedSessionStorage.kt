@@ -1,7 +1,6 @@
 package com.example.core.data.auth
 
 import android.annotation.SuppressLint
-import android.content.SharedPreferences
 import com.example.core.domain.auth.AuthInfo
 import com.example.core.domain.auth.SessionStorage
 import kotlinx.coroutines.Dispatchers
@@ -10,7 +9,7 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 class EncryptedSessionStorage(
-    private val sharedPreferences: SharedPreferences
+    private val sharedPreferences: AuthSharedPreference
 ) : SessionStorage {
     override suspend fun get(): AuthInfo? {
         return withContext(Dispatchers.IO) {

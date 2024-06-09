@@ -22,10 +22,11 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.core.presentation.designsystem.MileMarkerTheme
+import com.example.core.presentation.ui.DistanceUnit
 import com.example.core.presentation.ui.formatted
-import com.example.core.presentation.ui.toFormattedKm
-import com.example.core.presentation.ui.toFormattedPace
 import com.example.run.domain.RunData
+import com.example.run.presentation.active_run.model.RunDataUi
+import com.example.run.presentation.active_run.model.toRunDataUi
 import com.milemarker.run.presentation.R
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
@@ -33,7 +34,7 @@ import kotlin.time.Duration.Companion.minutes
 @Composable
 fun RunDataCard(
     elapsedTime: Duration,
-    runData: RunData,
+    runDataUi: RunDataUi,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -57,15 +58,13 @@ fun RunDataCard(
         ) {
             RunDataItem(
                 title = stringResource(id = R.string.distance),
-                value = runData.distanceMeters.toFormattedKm(),
+                value = runDataUi.distance,
                 modifier = Modifier
                     .defaultMinSize(minWidth = 75.dp)
             )
             RunDataItem(
                 title = stringResource(id = R.string.pace),
-                value = elapsedTime.toFormattedPace(
-                    distanceMeters = runData.distanceMeters
-                ),
+                value = runDataUi.pace,
                 modifier = Modifier
                     .defaultMinSize(minWidth = 75.dp)
             )
@@ -103,10 +102,10 @@ private fun RunDataCardPreview() {
     MileMarkerTheme {
         RunDataCard(
             elapsedTime = 10.minutes,
-            runData = RunData(
+            runDataUi = RunData(
                 distanceMeters = 3425,
-                pace = 3.minutes
-            )
+                pacePerKilometer = 3.minutes
+            ).toRunDataUi(DistanceUnit.MILES)
         )
     }
 }

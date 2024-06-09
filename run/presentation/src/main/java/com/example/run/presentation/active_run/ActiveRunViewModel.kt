@@ -10,9 +10,11 @@ import com.example.core.domain.location.Location
 import com.example.core.domain.run.Run
 import com.example.core.domain.run.RunRepository
 import com.example.core.domain.util.Result
+import com.example.core.presentation.ui.DistanceUnitStorage
 import com.example.core.presentation.ui.asUiText
 import com.example.run.domain.LocationDataCalculator
 import com.example.run.domain.RunningTracker
+import com.example.run.presentation.active_run.model.toRunDataUi
 import com.example.run.presentation.active_run.service.ActiveRunService
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,7 +30,8 @@ import java.time.ZonedDateTime
 
 class ActiveRunViewModel(
     private val runningTracker: RunningTracker,
-    private val runRepository: RunRepository
+    private val runRepository: RunRepository,
+    private val distanceUnitStorage: DistanceUnitStorage
 ) : ViewModel() {
 
     var state by mutableStateOf(
@@ -77,7 +80,10 @@ class ActiveRunViewModel(
         runningTracker
             .runData
             .onEach { runData ->
-                state = state.copy(runData = runData)
+                state = state.copy(
+                    runDataUi = runData.toRunDataUi(distanceUnitStorage.getDistanceUnit()),
+                    distanceMeters = runData.distanceMeters
+                )
             }
             .launchIn(viewModelScope)
 
@@ -147,7 +153,7 @@ class ActiveRunViewModel(
     }
 
     private fun finishRun(mapPicture: ByteArray) {
-        val locations = state.runData.locations
+        val locations = state.runDataUi.locations
         if (locations.isEmpty() || locations.first().size <= 1) {
             state = state.copy(isSavingRun = false)
             return
@@ -159,7 +165,7 @@ class ActiveRunViewModel(
                 duration = state.elapsedTime,
                 dateTimeUtc = ZonedDateTime.now()
                     .withZoneSameInstant(ZoneId.of("UTC")),
-                distanceMeters = state.runData.distanceMeters,
+                distanceMeters = state.distanceMeters,
                 location = state.currentLocation ?: Location(0.0, 0.0),
                 maxSpeedKmh = LocationDataCalculator.getMaxSpeedKmh(locations),
                 totalElevationMeters = LocationDataCalculator.getTotalElevationMeters(locations),

@@ -1,12 +1,16 @@
 package com.example.core.presentation.ui
 
+import com.example.core.domain.util.toFeet
 import com.example.core.domain.util.toKm
+import com.example.core.domain.util.toMiles
+import com.example.core.domain.util.toPacePerMile
 import kotlin.math.pow
 import kotlin.math.round
-import kotlin.math.roundToInt
 import kotlin.time.Duration
 
 typealias DistanceMeters = Int
+typealias DistanceKiloMeters = Double
+typealias PacePerKilometer = Duration
 
 fun Duration.formatted(): String {
     val totalSeconds = inWholeSeconds
@@ -17,29 +21,35 @@ fun Duration.formatted(): String {
     return "$hours:$minutes:$seconds"
 }
 
-fun DistanceMeters.toFormattedKm(): String {
-    return "${toKm().roundToDecimals(2)} km"
-}
-
-fun Duration.toFormattedPace(distanceMeters: Int): String {
-    val distanceKm = distanceMeters.toKm()
-    if(this == Duration.ZERO || distanceKm <= 0.0) {
-        return "-"
+fun DistanceMeters.toFormattedDistance(distanceUnit: DistanceUnit): String {
+    return when (distanceUnit) {
+        DistanceUnit.MILES -> "${toMiles().roundToDecimals(2)} mi"
+        DistanceUnit.KILOMETERS -> "${toKm().roundToDecimals(2)} km"
     }
-
-    val secondsPerKm = (this.inWholeSeconds / distanceKm).roundToInt()
-    val avgPaceMinutes = secondsPerKm / 60
-    val avgPaceSeconds = String.format("%02d", secondsPerKm % 60)
-
-    return "$avgPaceMinutes:$avgPaceSeconds / km"
 }
 
-fun Double.toFormattedKmh(): String {
-    return "${roundToDecimals(1)} km/h"
+fun PacePerKilometer.toFormattedPace(distanceUnit: DistanceUnit): String {
+    val pacePerUnit = if (distanceUnit == DistanceUnit.MILES) toPacePerMile() else this
+    val paceMinutes = pacePerUnit.inWholeMinutes
+    val paceSeconds = String.format("%02d", pacePerUnit.inWholeSeconds % 60)
+    return when (distanceUnit) {
+        DistanceUnit.MILES -> "$paceMinutes:$paceSeconds / mi"
+        DistanceUnit.KILOMETERS -> "$paceMinutes:$paceSeconds / km"
+    }
 }
 
-fun Int.toFormattedMeters(): String {
-    return "$this m"
+fun DistanceKiloMeters.toFormattedSpeed(distanceUnit: DistanceUnit): String {
+    return when (distanceUnit) {
+        DistanceUnit.MILES -> "${toMiles().roundToDecimals(1)} mph"
+        DistanceUnit.KILOMETERS -> "${roundToDecimals(1)} km/h"
+    }
+}
+
+fun DistanceMeters.toFormattedElevation(distanceUnit: DistanceUnit): String {
+    return when (distanceUnit) {
+        DistanceUnit.MILES -> "${toFeet().roundToDecimals(0).toInt()} ft"
+        DistanceUnit.KILOMETERS -> "$this m"
+    }
 }
 
 private fun Double.roundToDecimals(decimalCount: Int): Double {

@@ -198,7 +198,7 @@ private fun ActiveRunScreen(
             TrackerMap(
                 isRunFinished = state.isRunFinished,
                 currentLocation = state.currentLocation,
-                locations = state.runData.locations,
+                locations = state.runDataUi.locations,
                 onSnapshot = { bmp ->
                     val stream = ByteArrayOutputStream()
                     stream.use {
@@ -215,7 +215,7 @@ private fun ActiveRunScreen(
             )
             RunDataCard(
                 elapsedTime = state.elapsedTime,
-                runData = state.runData,
+                runDataUi = state.runDataUi,
                 modifier = Modifier
                     .padding(16.dp)
                     .padding(padding)

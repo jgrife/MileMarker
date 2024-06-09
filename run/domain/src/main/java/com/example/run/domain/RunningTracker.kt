@@ -106,7 +106,7 @@ class RunningTracker(
                 _runData.update {
                     RunData(
                         distanceMeters = distanceMeters,
-                        pace = avgSecondsPerKm.seconds,
+                        pacePerKilometer = avgSecondsPerKm.seconds,
                         locations = newLocationsList
                     )
                 }

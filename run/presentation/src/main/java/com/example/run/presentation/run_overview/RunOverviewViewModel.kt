@@ -8,8 +8,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.core.domain.auth.SessionStorage
 import com.example.core.domain.run.RunRepository
 import com.example.core.domain.run.SyncRunScheduler
+import com.example.core.presentation.ui.DistanceUnit
+import com.example.core.presentation.ui.DistanceUnitStorage
 import com.example.run.presentation.run_overview.model.toRunUi
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -19,10 +22,15 @@ class RunOverviewViewModel(
     private val runRepository: RunRepository,
     private val syncRunScheduler: SyncRunScheduler,
     private val applicationScope: CoroutineScope,
-    private val sessionStorage: SessionStorage
+    private val sessionStorage: SessionStorage,
+    private val distanceUnitStorage: DistanceUnitStorage
 ) : ViewModel() {
 
-    var state by mutableStateOf(RunOverviewState())
+    var state by mutableStateOf(
+        RunOverviewState(
+            currentDistanceUnit = distanceUnitStorage.getDistanceUnit()
+        )
+    )
         private set
 
     init {
@@ -34,9 +42,12 @@ class RunOverviewViewModel(
 
         runRepository.getRuns().onEach { runs ->
             val runsUi = runs.map { run ->
-                run.toRunUi()
+                run.toRunUi(distanceUnitStorage.getDistanceUnit())
             }
-            state = state.copy(runs = runsUi)
+            state = state.copy(
+                runsUi = runsUi,
+                runs = runs
+            )
         }.launchIn(viewModelScope)
 
         viewModelScope.launch {
@@ -51,6 +62,25 @@ class RunOverviewViewModel(
             is RunOverviewAction.DeleteRun -> {
                 viewModelScope.launch {
                     runRepository.deleteRun(action.runUi.id)
+                }
+            }
+            is RunOverviewAction.OnDistanceUnitToggle -> {
+                viewModelScope.launch {
+                    // Delaying long enough to ensure that the Menu dropdown has been closed before we set the selection.
+                    // Otherwise, we see the selection being changed immediately and then the Menu dropdown animates closed.
+                    delay(100)
+                    val toggledDistanceUnit = when(state.currentDistanceUnit) {
+                        DistanceUnit.MILES -> DistanceUnit.KILOMETERS
+                        DistanceUnit.KILOMETERS -> DistanceUnit.MILES
+                    }
+                    distanceUnitStorage.setDistanceUnit(toggledDistanceUnit)
+                    val runsUi = state.runs.map { run ->
+                        run.toRunUi(toggledDistanceUnit)
+                    }
+                    state = state.copy(
+                        runsUi = runsUi,
+                        currentDistanceUnit = toggledDistanceUnit
+                    )
                 }
             }
             else -> Unit

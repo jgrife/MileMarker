@@ -100,7 +100,10 @@ fun MileMarkerTopAppBar(
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
                                 modifier = Modifier
-                                    .clickable { onMenuItemClick(index) }
+                                    .clickable {
+                                        isDropDownOpen = false
+                                        onMenuItemClick(index)
+                                    }
                                     .fillMaxWidth()
                                     .padding(16.dp)
                             ) {

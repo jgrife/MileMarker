@@ -50,7 +50,8 @@ import com.example.core.domain.run.Run
 import com.example.core.presentation.designsystem.CalendarIcon
 import com.example.core.presentation.designsystem.MileMarkerTheme
 import com.example.core.presentation.designsystem.RunOutlinedIcon
-import com.example.run.presentation.run_overview.model.RunDataUi
+import com.example.core.presentation.ui.DistanceUnit
+import com.example.run.presentation.run_overview.model.RunNamedValueUi
 import com.example.run.presentation.run_overview.model.RunUi
 import com.example.run.presentation.run_overview.model.toRunUi
 import com.milemarker.run.presentation.R
@@ -228,23 +229,23 @@ private fun DataGrid(
     modifier: Modifier = Modifier
 ) {
     val runDataUiList = listOf(
-        RunDataUi(
+        RunNamedValueUi(
             name = stringResource(id = R.string.distance),
             value = run.distance
         ),
-        RunDataUi(
+        RunNamedValueUi(
             name = stringResource(id = R.string.pace),
             value = run.pace
         ),
-        RunDataUi(
+        RunNamedValueUi(
             name = stringResource(id = R.string.avg_speed),
             value = run.avgSpeed
         ),
-        RunDataUi(
+        RunNamedValueUi(
             name = stringResource(id = R.string.max_speed),
             value = run.maxSpeed
         ),
-        RunDataUi(
+        RunNamedValueUi(
             name = stringResource(id = R.string.total_elevation),
             value = run.totalElevation
         ),
@@ -273,7 +274,7 @@ private fun DataGrid(
 
 @Composable
 private fun DataGridCell(
-    runData: RunDataUi,
+    runData: RunNamedValueUi,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -306,7 +307,7 @@ private fun RunListItemPreview() {
                 maxSpeedKmh = 15.6234,
                 totalElevationMeters = 123,
                 mapPictureUrl = null
-            ).toRunUi(),
+            ).toRunUi(DistanceUnit.MILES),
             onDeleteClick = { }
         )
     }

@@ -1,8 +1,11 @@
 package com.example.core.domain.run
 
 import com.example.core.domain.location.Location
+import com.example.core.domain.util.toKm
 import java.time.ZonedDateTime
+import kotlin.math.roundToInt
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 import kotlin.time.DurationUnit
 
 data class Run(
@@ -17,4 +20,7 @@ data class Run(
 ) {
     val avgSpeedKmh: Double
         get() = (distanceMeters / 1000.0) / duration.toDouble(DurationUnit.HOURS)
+
+    val pacePerKilometer: Duration
+        get() = (duration.inWholeSeconds / distanceMeters.toKm()).roundToInt().seconds
 }
